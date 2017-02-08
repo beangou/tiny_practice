@@ -46,9 +46,9 @@ public class TestThread implements Runnable {
 
     public static void main(String[] args) {
 //        try {
-            Thread thread = new Thread(new TestThread());
+                Thread thread = new Thread(new TestThread());
 //            thread.setDaemon(true);
-            thread.start();
+                thread.start();
 //        } catch (Exception e) {
 //            System.out.println("9999999999");
 //            e.printStackTrace();

@@ -1,6 +1,7 @@
 package com.beangou.year2017.day0203;
 
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 
 //在定义接口方法时不能使用synchronized关键字。
@@ -19,6 +20,12 @@ public class TestSynchronize {
     private String str = "222";
 
     private Object obj = new Object();
+
+    private String threadName;
+
+    public TestSynchronize(String threadName) {
+        this.threadName = threadName;
+    }
 
     public synchronized int methodGetI() {
         return i;
@@ -41,15 +48,39 @@ public class TestSynchronize {
     public static synchronized void doIt() {
     }
 
-    public static String getString() {
+    public static void main(String[] args) {
+        System.out.println(new Date(201702038574569534L));
+        System.out.println("");
+        System.out.println(1 << 1);
+        new Thread(new MyThread("1111")).start();
+        new Thread(new MyThread("2222")).start();
+        new Thread(new MyThread("3333")).start();
+        new Thread(new MyThread("4444")).start();
+        new Thread(new MyThread("5555")).start();
+    }
 
+    public String getString() {
+        System.out.println("thread=" + Thread.currentThread().getId() + ", threadName=" + threadName);
         synchronized (TestSynchronize.class) {
-
+            System.out.println("thread=" + Thread.currentThread().getId() + ", threadName=" + threadName + "go to synchronize.");
+            try {
+                TimeUnit.MINUTES.sleep(1);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
 
+        System.out.println("over.");
         synchronized ("222") {
-            return null;
+            System.out.println(threadName + "go to 222 synchronize.");
+            try {
+                TimeUnit.MINUTES.sleep(2);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
+        System.out.println(threadName + " is over");
+        return null;
     }
 
     public String test2() {
@@ -57,11 +88,19 @@ public class TestSynchronize {
             return "";
         }
     }
+}
 
-    public static void main(String[] args) {
-        System.out.println(new Date(201702038574569534L));
-        System.out.println("");
-        System.out.println(1 << 1);
+class MyThread implements Runnable {
+
+    private String threadName;
+
+    public MyThread(String threadName) {
+        this.threadName = threadName;
+    }
+
+    @Override
+    public void run() {
+        new TestSynchronize(threadName).getString();
     }
 }
 
