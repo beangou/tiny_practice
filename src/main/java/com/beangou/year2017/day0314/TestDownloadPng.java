@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
+import java.net.InetSocketAddress;
+import java.net.Proxy;
 import java.net.URL;
 
 /**
@@ -22,10 +24,12 @@ public class TestDownloadPng {
 
     public static void main(String[] args) {
         String url = "http://www.baidu.com/img/baidu_sylogo1.gif";
+//        String url = "https://pbs.twimg.com/media/C0L3mzfVIAE8U-R.jpg";
+//        String url = "https://graph.facebook.com/v2.8/160421174463214/picture";
         byte[] btImg = getImageFromNetByUrl(url);
         if(null != btImg && btImg.length > 0){
             System.out.println("读取到：" + btImg.length + " 字节");
-            String fileName = "百度.gif";
+            String fileName = "百度4.gif";
             writeImageToDisk(btImg, fileName);
         }else{
             System.out.println("没有从该连接获得内容");
@@ -48,7 +52,15 @@ public class TestDownloadPng {
     public static byte[] getImageFromNetByUrl(String strUrl){
         try {
             URL url = new URL(strUrl);
-            HttpURLConnection conn = (HttpURLConnection)url.openConnection();
+            HttpURLConnection conn = null;
+
+//            InetSocketAddress addr = new InetSocketAddress("45.76.223.34", 8381);
+//            Proxy proxy = new Proxy(Proxy.Type.SOCKS, addr); // http 代理
+//            conn = (HttpURLConnection)url.openConnection(proxy);
+            conn = (HttpURLConnection)url.openConnection();
+//            conn.setRequestMethod("GET");
+//            conn.setConnectTimeout(20000);
+
             conn.setRequestMethod("GET");
             conn.setConnectTimeout(5 * 1000);
             InputStream inStream = conn.getInputStream();//通过输入流获取图片数据
