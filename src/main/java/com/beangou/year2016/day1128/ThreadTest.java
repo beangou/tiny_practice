@@ -31,6 +31,7 @@ public class ThreadTest implements Runnable {
     }
 
     public static void main(String[] args) {
+
         ThreadTest test = new ThreadTest("11111111");
         Thread t1 = new Thread(test);
         System.out.println("t1.state=" + t1.getState());
@@ -41,6 +42,7 @@ public class ThreadTest implements Runnable {
         t2.stop();
         t2.resume();
         Thread.yield();
+
 //        new Thread(test).start();
 //        new Thread(test).start();
 //        try {
@@ -49,7 +51,13 @@ public class ThreadTest implements Runnable {
 //            e.printStackTrace();
 //        }
 
+    }
 
+    public void test4() {
+
+    }
+
+    public void test2() {
 
     }
 
