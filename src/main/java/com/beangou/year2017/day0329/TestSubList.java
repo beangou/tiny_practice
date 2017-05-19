@@ -25,10 +25,15 @@ public class TestSubList {
         }
 
 
-        List<String> list2 = list.subList(0, 5);
+        List<String> list2 = list.subList(0, 20);
         System.out.println("list=" + list);
         System.out.println("list2=" + list2);
 
+        System.out.println("submitList=" + list.removeAll(list2));
+        System.out.println("result=" + list);
+
+//        List<String> secondeList = null;
+//        list2.addAll(secondeList);
     }
 
 }
