@@ -27,14 +27,8 @@ public class MyHashMap {
         Thread t = new Thread(new Runnable() {
             @Override
             public void run() {
-                for (int i = 0; i < 10000; i++) {
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            map2.put(UUID.randomUUID().toString(), "");
-                        }
-                    }, "ftf" + i).start();
-                }
+                for (int i = 0; i < 10000; i++)
+                    new Thread(() -> map2.put(UUID.randomUUID().toString(), ""), "ftf" + i).start();
             }
         }, "ftf");
         t.start();

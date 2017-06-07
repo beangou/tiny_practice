@@ -3,6 +3,7 @@ package com.beangou.year2017.day0418;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -18,6 +19,26 @@ import java.util.List;
  */
 
 public class ListTest {
+
+    @Test
+    public void retailAll() {
+//        List<Integer> list1 = new ArrayList<>();
+//        list1.add(1);
+//        list1.add(2);
+//        list1.add(3);
+
+//        List<Integer> list1 = new ArrayList<>(Arrays.asList(1, 2, 3));
+        List<Integer> list1 = Arrays.asList(1, 2, 3);
+        // 调用retailAll方法会抛异常，因为asList返回的类，没有实现retailAll方法，调用的是是其父类方法， 其父类直接跑出unsupported异常了
+
+        List<Integer> list2 = new ArrayList<>();
+        list2.add(1);
+        list2.add(4);
+        list2.add(5);
+
+        list1.retainAll(list2);
+        System.out.println("list1="+list1);
+    }
 
     @Test
     public void ss() {
