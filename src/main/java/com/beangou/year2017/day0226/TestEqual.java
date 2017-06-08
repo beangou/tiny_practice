@@ -40,6 +40,8 @@ public class TestEqual {
         System.out.println("a.equals(d):" + (a.equals(d)));
         System.out.println("a.equals(e):" + (a.equals(e)));
         System.out.println("a.equals(f):" + (a.equals(f)));
+
+        System.out.println("aaa=" + (MyByteEnum.ONE.getCode() == a));
     }
 
 
@@ -53,4 +55,24 @@ public class TestEqual {
         System.out.println("result=" + list.contains(new Byte((byte)1)));
     }
 
+}
+
+enum MyByteEnum {
+
+    ONE((byte)1);
+
+    private Byte code;
+
+    MyByteEnum(Byte code) {
+        this.code = code;
+    }
+
+    public Byte getCode() {
+
+        return code;
+    }
+
+    public void setCode(Byte code) {
+        this.code = code;
+    }
 }
