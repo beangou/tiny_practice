@@ -17,6 +17,25 @@ import java.util.List;
  * @since 1.0
  */
 public class TestEqual {
+
+    @Test
+    public void integerEqual() {
+//        128 > var >= -128 有缓存问题？ == 到底是怎么比较的
+
+        int a = 100;
+        Integer b = 100;
+        int c = 1000;
+        Integer d = 1000;
+        int e = 10000;
+        Integer f = 10000;
+
+        System.out.println("a == b " + (a == b));
+        System.out.println("c == d " + (d == c));
+        System.out.println("e == f " + (e == f));
+
+        Integer.valueOf(100);
+    }
+
     @Test
     public void testByteEqual() {
 
