@@ -20,10 +20,8 @@ public class TestCollection {
         list2.add("1");
         list2.add("6");
 
-        // ½»¼¯
 //        boolean b = list1.retainAll(list2);
         list1.removeAll(list2);
-        // ²î¼¯
         for(String str: list1)
             System.out.println(str);
     }

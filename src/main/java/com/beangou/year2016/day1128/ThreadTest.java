@@ -63,3 +63,99 @@ public class ThreadTest implements Runnable {
 
 
 }
+
+class ThreadA implements Runnable {
+
+    public Object monitor;
+
+    public ThreadA(Object monitor) {
+        this.monitor = monitor;
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+        Object monitor = new Object();
+        ThreadA threadA = new ThreadA(monitor);
+        Thread thread = new Thread(threadA);
+        thread.start();
+        Thread.sleep(1000 * 10);
+
+        ThreadB threadB = new ThreadB(monitor);
+        Thread thread2 = new Thread(threadB);
+        thread2.start();
+
+        Thread.sleep(1000 * 10);
+
+        ThreadC threadC = new ThreadC(monitor);
+        Thread thread3 = new Thread(threadC);
+        thread3.start();
+//        threadA.monitor.notify();
+//        Thread.sleep(1000 * 10);
+//        threadA.monitor.notifyAll();
+    }
+
+    @Override
+    public void run() {
+        synchronized (monitor) {
+            try {
+                System.out.println("just wait...");
+                monitor.wait(); // 调用wait方法 表示已经当前线程已释放monitor的锁了
+                System.out.println("pass wait...");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+
+class ThreadB implements Runnable {
+
+    private Object monitor;
+
+    public ThreadB(Object monitor) {
+        this.monitor = monitor;
+    }
+
+    @Override
+    public void run() {
+        synchronized (monitor) {
+            System.out.println("go to threadB");
+            try {
+                monitor.wait(); // 调用wait、notify方法，前提是当前线程必须持有该对象的锁
+                System.out.println("pass threadB");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+//        Object object = new Object();
+//        synchronized (object) {
+//            System.out.println("go to threadB");
+//            object.notify();
+////            monitor.notify();
+//
+    }
+}
+
+class ThreadC implements Runnable {
+
+    private Object monitor;
+
+    public ThreadC(Object monitor) {
+        this.monitor = monitor;
+    }
+
+    @Override
+    public void run() {
+        synchronized (monitor) {
+            System.out.println("go to threadC");
+            monitor.notifyAll(); // 调用wait、notify方法，前提是当前线程必须持有该对象的锁
+        }
+
+//        Object object = new Object();
+//        synchronized (object) {
+//            System.out.println("go to threadB");
+//            object.notify();
+////            monitor.notify();
+//        }
+    }
+}
