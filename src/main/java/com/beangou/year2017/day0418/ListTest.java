@@ -2,10 +2,7 @@ package com.beangou.year2017.day0418;
 
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 /**
  * <pre>
@@ -19,6 +16,15 @@ import java.util.List;
  */
 
 public class ListTest {
+
+    @Test
+    public void testLinkList() {
+        // 双向非循环列表
+        LinkedList<Integer> linkedList = new LinkedList<>();
+        linkedList.add(1);
+        linkedList.remove(2);
+        linkedList.getFirst();
+    }
 
     @Test
     public void retailAll() {
