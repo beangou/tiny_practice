@@ -21,7 +21,6 @@ public class TestThreadPool {
          Future future = executorService.submit(() -> {
 
          });
-
     }
 
 }

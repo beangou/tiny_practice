@@ -33,18 +33,34 @@ public class ThreadTest implements Runnable {
     public static void main(String[] args) {
 
         ThreadTest test = new ThreadTest("11111111");
-        Thread t1 = new Thread(test);
-        System.out.println("t1.state=" + t1.getState());
-        Thread t2 = new Thread(test);
-        t2.start();
-        System.out.println("t2.state=" + t2.getState());
-        t2.suspend();
-        t2.stop();
-        t2.resume();
-        Thread.yield();
+//        Thread t1 = new Thread(test);
+//        System.out.println("t1.state=" + t1.getState());
+//        Thread t2 = new Thread(test);
+//        t2.start();
+//        System.out.println("t2.state=" + t2.getState());
+//        t2.suspend();
+//        t2.stop();
+//        t2.resume();
+//        Thread.yield();
 
-//        new Thread(test).start();
-//        new Thread(test).start();
+        new Thread(test).start();
+        new Thread(test).start();
+        new Thread(test).start();
+        new Thread(test).start();
+        new Thread(test).start();
+        new Thread(test).start();
+        new Thread(test).start();
+        new Thread(test).start();
+        new Thread(test).start();
+        new Thread(test).start();
+        new Thread(test).start();
+        new Thread(test).start();
+        new Thread(test).start();
+        new Thread(test).start();
+        new Thread(test).start();
+        new Thread(test).start();
+        new Thread(test).start();
+        new Thread(test).start();
 //        try {
 //            Thread.sleep(5000);
 //        } catch (InterruptedException e) {
