@@ -12,6 +12,11 @@ public class TestInnerLock {
 
         Thread.sleep(10000);
         new ClassB(lock).start();
+
+        System.out.println("waiting. for lock ...???");
+        synchronized (lock) {
+            System.out.println("result=" + Thread.currentThread().holdsLock(lock));
+        }
     }
 
 }
@@ -31,6 +36,7 @@ class ClassA extends Thread {
                 Thread.sleep(5000);
                 System.out.println("A go to wait...");
                 innerLock.wait();
+                Thread.sleep(5000);
                 System.out.println("pass A");
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -51,7 +57,8 @@ class ClassB extends Thread {
     public void run() {
         synchronized (innerLock) {
             System.out.println("B go to notify...");
-            innerLock.notifyAll();
+            // 唤醒所有该对象的wait方法
+            innerLock.notify();
             System.out.println("after notify pass B");
         }
     }
