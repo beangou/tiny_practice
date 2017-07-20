@@ -16,7 +16,7 @@ public class TestRuntime {
 
     @Test
     public void show() {
-        long[] arr = new long[1024*1024*400];
+        long[] arr = new long[1024*1024];
         System.out.println("freeMemory=" + Runtime.getRuntime().freeMemory()/1024/1024);
         System.out.println("maxMemory=" + Runtime.getRuntime().maxMemory()/1024/1024);
         System.out.println("availableProcessors=" + Runtime.getRuntime().availableProcessors());

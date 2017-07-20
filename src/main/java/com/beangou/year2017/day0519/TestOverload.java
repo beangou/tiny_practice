@@ -18,6 +18,9 @@ public class TestOverload {
     public void test() {
         new TestOverload().methodA(new Object());
         new TestOverload().methodA("sss");
+
+        new TestOverload().intA(1);
+        new TestOverload().intA(Integer.valueOf(1));
     }
     
     public void methodA(Object obj) {
@@ -28,4 +31,14 @@ public class TestOverload {
         System.out.println("string method");
     }
 
+    public void intA(int a) {
+        System.out.println("intA");
+    }
+
+    public void intA(Integer a) {
+        System.out.println("IntegerA");
+    }
+
 }
+
+

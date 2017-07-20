@@ -18,6 +18,15 @@ import java.util.*;
 public class ListTest {
 
     @Test
+    public void removeAll() {
+        List<Integer> list1 = new ArrayList<>(Arrays.asList(1, 2, 3, 4));
+        List<Integer> list2 = Arrays.asList(1, 2, 7);
+        System.out.println("list1=" + list1);
+        list1.removeAll(list2);
+        System.out.println("result=" + list1);
+    }
+
+    @Test
     public void testLinkList() {
         // 双向非循环列表
         LinkedList<Integer> linkedList = new LinkedList<>();

@@ -27,6 +27,8 @@ public class TestString {
         System.out.println(StringUtils.isBlank("  "));
         System.out.println(StringUtils.isBlank("ss "));
         System.out.println(StringUtils.isBlank("ss  "));
+
+        System.out.println("result=" + "https://buyer.onloon.com.cn/detail?shopId=151623511167744942&productId=ef7ccec260e64ac9be7c73094b6bfdd0".replace("productId=ef7ccec260e64ac9be7c73094b6bfdd0", "productId=ef7ccec260e64ac9be7c73094b6bfdd0&viewFrom=1"));
     }
 
 }
