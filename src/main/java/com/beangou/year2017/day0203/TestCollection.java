@@ -4,8 +4,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.junit.Test;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by liutb on 2017/2/3.
@@ -13,6 +12,35 @@ import java.util.Set;
  * @since 1.0.0
  */
 public class TestCollection {
+
+
+    @Test
+    public void testRandom() {
+        for (int i = 0; i < 1000; i++) {
+            int randomNum = (int)(2*Math.random());
+            System.out.println("randomNum =" + randomNum);
+        }
+    }
+
+    @Test
+    public void set2List() {
+
+        String[] keyWordArr = "Rubber hose".split(";");
+
+        for (int i = 0; i < keyWordArr.length; i++) {
+            System.out.println("word:" + keyWordArr[i]);
+        }
+
+        Map<String, Integer> map = new HashMap<>();
+        map.put("111", 111);
+        map.put("222", 111);
+        map.put("333", 111);
+        map.put("444", 111);
+        map.put("555", 111);
+
+        List<String> list = new ArrayList<>(map.keySet());
+        System.out.println("list=" + list);
+    }
 
     @Test
     public void testSet() {
