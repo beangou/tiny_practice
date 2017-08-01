@@ -17,6 +17,31 @@ import java.util.*;
 
 public class ListTest {
 
+
+    @Test
+    public void safeRemove() {
+        List<String> list1 = new ArrayList<>(Arrays.asList("1", "2", "3", "4"));
+        Iterator<String> iterator = list1.iterator();
+        while(iterator.hasNext()) {
+            String ele = iterator.next();
+            if ("3".equals(ele)) {
+                iterator.remove();
+            }
+        }
+        System.out.println("list1=" + list1);
+    }
+
+    @Test
+    public void testReplaceFirst() {
+        List<String> list1 = new ArrayList<>(Arrays.asList("1", "2", "3", "4"));
+        list1.remove(0);
+        list1.add(0, "9999");
+        System.out.println("list1=" + list1);
+        Optional<String> value = list1.stream().filter(e -> e.equals("999")).findFirst();
+        System.out.println("result=" + value.isPresent());
+
+    }
+
     @Test
     public void removeAll() {
         List<Integer> list1 = new ArrayList<>(Arrays.asList(1, 2, 3, 4));
