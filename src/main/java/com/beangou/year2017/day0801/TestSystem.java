@@ -16,7 +16,7 @@ public class TestSystem {
 
     @Test
     public void findProperties() {
-        System.out.println("result=" + System.getProperties().getProperty("os.name"));
+        System.out.println("result=" + System.getProperties().getProperty("os.name").contains("Window"));
     }
 
 }

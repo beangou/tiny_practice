@@ -18,17 +18,22 @@ import java.util.*;
 public class ListTest {
 
 
+
+
     @Test
     public void safeRemove() {
-        List<String> list1 = new ArrayList<>(Arrays.asList("1", "2", "3", "4"));
-        Iterator<String> iterator = list1.iterator();
-        while(iterator.hasNext()) {
-            String ele = iterator.next();
-            if ("3".equals(ele)) {
-                iterator.remove();
+        for (int i=0; i<10000; i++) {
+            List<String> list1 = new ArrayList<>(Arrays.asList("1", "2", "3", "4"));
+            Iterator<String> iterator = list1.iterator();
+            while(iterator.hasNext()) {
+                String ele = iterator.next();
+                if ("3".equals(ele)) {
+                    iterator.remove();
+                }
             }
+            System.out.println("list1=" + list1);
         }
-        System.out.println("list1=" + list1);
+
     }
 
     @Test
