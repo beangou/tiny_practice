@@ -21,6 +21,11 @@ public class TestThreadPool {
          Future future = executorService.submit(() -> {
 
          });
+
+        ExecutorService executorService1 = Executors.newWorkStealingPool();
+
+        Executors.newSingleThreadExecutor();
+        Executors.newSingleThreadScheduledExecutor();
     }
 
 }
