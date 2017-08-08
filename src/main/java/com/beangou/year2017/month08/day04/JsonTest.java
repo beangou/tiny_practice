@@ -26,7 +26,7 @@ public class JsonTest {
 
     @Test
     public void see() {
-        System.out.println("result=" + toJsonString(new Person(null, 88), true));
+        System.out.println("result=" + toJsonString(new Person(null, 0), true));
     }
 
     /**

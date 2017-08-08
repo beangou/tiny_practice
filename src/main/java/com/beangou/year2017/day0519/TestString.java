@@ -17,6 +17,10 @@ public class TestString {
 
     @Test
     public void trim() {
+
+        String str1 = "{\"originData\":{\"state\":\"\",\"city\":\"\",\"address\":\"San Francisco Bay Area\",\"postcode\":\"\"},\"newData\":{\"state\":\"CA\",\"city\":\"Oakland\",\"address\":\"300 Lakeside Dr\",\"postcode\":\"94604\"},\"toUpdateFields\":\"地区，城市，street address，邮编，\",\"updatedFields\":\"头像，公司主页，联系电话，行业，员工数量，facebook主页，\"}";
+        String str2 = "{\"originData\":{\"state\":\"\",\"city\":\"\",\"address\":\"San Francisco Bay Area\",\"postcode\":\"\"},\"newData\":{\"state\":\"CA\",\"city\":\"Oakland\",\"address\":\"300 Lakeside Dr\",\"postcode\":\"94604\"},\"toUpdateFields\":\"地区，城市，street address，邮编，\",\"updatedFields\":\"\"}";
+
         System.out.println("result=" + "     ".trim() + "******");
         System.out.println("result=" + "  ss   ".trim() + "******");
         System.out.println("result=" + "  d d  ".trim() + "******");
