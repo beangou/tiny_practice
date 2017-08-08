@@ -39,7 +39,8 @@ public class TestLambda {
      */
     @Test
     public void testReduce() {
-        final StockInfo stockInfo = Tickers.symbols.stream().map(StockUtil::getPrice).filter(StockUtil.isPriceLessThan(500)).reduce(StockUtil::pickHigh).get();
+        final StockInfo stockInfo = Tickers.symbols.stream().map(StockUtil::getPrice)
+                .filter(StockUtil.isPriceLessThan(500)).reduce(StockUtil::pickHigh).get();
         System.out.println("result=" + stockInfo);
     }
 
@@ -60,7 +61,9 @@ class StockInfo extends Entity {
 
 class StockUtil {
     public static StockInfo getPrice(final String ticker) {
-        return new StockInfo(ticker, new BigDecimal(1000 * Math.random()));
+        BigDecimal big = new BigDecimal(1000 * Math.random());
+        System.out.println("big=" + big);
+        return new StockInfo(ticker, big);
     }
 
     public static Predicate<StockInfo> isPriceLessThan(final int price) {
