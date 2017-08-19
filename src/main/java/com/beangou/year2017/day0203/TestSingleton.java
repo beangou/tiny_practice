@@ -1,5 +1,9 @@
 package com.beangou.year2017.day0203;
 
+import com.beangou.year2017.Entity;
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * Created by liutb on 2017/2/3.
  *
@@ -31,12 +35,43 @@ public class TestSingleton {
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    TestSingleton.getSingleton();
+//                    TestSingleton.getSingleton();
+                    StaticInitHolderPattern.getSingleton();
                 }
             }).start();
         }
     }
 
+}
+
+// 静态初始化占位模式(如果InnerClass去掉static修饰符，可不可以？ 不可以，会编译报错，为何报错？)
+// 为何非静态内部类的属性，不能是静态的？ 但是静态内部类的属性、方法可以是非静态的
+class StaticInitHolderPattern {
+
+    private static class InnerClass {
+        private static MySingleton mySingleton = new MySingleton(1, "beangou");
+        public static void say() {
+            System.out.println("hhahahha");
+        }
+    }
+
+    public static MySingleton getSingleton() {
+        System.out.println("same?" + InnerClass.mySingleton);
+        return InnerClass.mySingleton;
+    }
+}
+
+@Getter
+@Setter
+class MySingleton {
+
+    private int id;
+    private String name;
+
+    public MySingleton(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 }
 
 // compile error
