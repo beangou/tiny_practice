@@ -11,11 +11,19 @@ public class TestInnerClass {
     private ObjExtendsMother objExtendsMother;
 
     public TestInnerClass() {
-        this.objExtendsFather = new ObjExtendsFather();
+        this.objExtendsFather = new ObjExtendsFather("2222");
         this.objExtendsMother = new ObjExtendsMother();
     }
 
     class ObjExtendsFather extends Father {
+
+        private String name;
+
+        public ObjExtendsFather(String name) {
+            name = "sss";
+            this.name = name;
+        }
+
     }
 
     class ObjExtendsMother extends Mother {
@@ -25,13 +33,23 @@ public class TestInnerClass {
         this.objExtendsFather.strong();
     }
 
-    public void kind() {
+    public void kind(boolean a) {
         this.objExtendsMother.kind();
+        if (a) {
+            class InnerClassInMethod implements Runnable {
+                @Override
+                public void run() {
+
+                }
+            }
+            new InnerClassInMethod().run();
+        }
+//        new InnerClassInMethod();
     }
 
     public static void main(String[] args) {
         new TestInnerClass().strong();
-        new TestInnerClass().kind();
+        new TestInnerClass().kind(true);
     }
 }
 

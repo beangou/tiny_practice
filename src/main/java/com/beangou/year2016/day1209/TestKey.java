@@ -31,7 +31,16 @@ abstract class AbstractClass {
 }
 
 interface MyInterface {
+
+    public static void main(String[] args) {
+        say();
+    }
+
     public void testOverride();
+
+    public static void say() {
+        System.out.println("hello.");
+    }
 }
 
 class Son extends AbstractClass implements MyInterface {

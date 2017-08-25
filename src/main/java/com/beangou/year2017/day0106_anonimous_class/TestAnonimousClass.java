@@ -13,9 +13,31 @@ public class TestAnonimousClass {
                 System.out.println("sss");
             }
         }.test();
+
+        getBase(22);
+    }
+
+    public static Base getBase(int i) {
+        return new Base(i) {
+            // 必须有{} 这是没有名字的构造函数
+            {System.out.println("inside i" + i);}
+
+            @Override
+            public void f() {
+
+            }
+        };
     }
 }
 
 abstract class MyAbstractClass {
     public abstract void test();
+}
+
+abstract class Base {
+    public Base (int i) {
+        System.out.println("base i=" + i);
+    }
+
+    public abstract void f();
 }

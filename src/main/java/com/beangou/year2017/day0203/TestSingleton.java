@@ -1,6 +1,5 @@
 package com.beangou.year2017.day0203;
 
-import com.beangou.year2017.Entity;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -48,16 +47,27 @@ public class TestSingleton {
 // 为何非静态内部类的属性，不能是静态的？ 但是静态内部类的属性、方法可以是非静态的
 class StaticInitHolderPattern {
 
-    private static class InnerClass {
-        private static MySingleton mySingleton = new MySingleton(1, "beangou");
+    private static class StaticInnerClass {
+//    private  class StaticInnerClass {
+        private static final int i = 1;
+        private static final MySingleton mySingleton = new MySingleton(1, "beangou");
         public static void say() {
             System.out.println("hhahahha");
         }
     }
 
+    private class NonStaticInnerClass {
+//        private static int i = 1;
+//        private static final int i;
+        private static final int i = 1;
+        private static final String a = "2";
+//        private static final Object obj = new Object();
+//        private static final StringBuilder obj = new StringBuilder();
+    }
+
     public static MySingleton getSingleton() {
-        System.out.println("same?" + InnerClass.mySingleton);
-        return InnerClass.mySingleton;
+        System.out.println("same?" + StaticInnerClass.mySingleton);
+        return StaticInnerClass.mySingleton;
     }
 }
 
