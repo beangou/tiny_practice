@@ -6,7 +6,7 @@ import org.junit.Test;
  * Created by liutongbin on 2017/8/25.
  */
 public class ShuaData {
-    
+
     @Test
     public void getPersons() {
 

@@ -59,8 +59,8 @@ public class TestEqual {
         System.out.println("a.equals(d):" + (a.equals(d)));
         System.out.println("a.equals(e):" + (a.equals(e)));
         System.out.println("a.equals(f):" + (a.equals(f)));
-
         System.out.println("aaa=" + (MyByteEnum.ONE.getCode() == a));
+        System.out.println("enum = d" + (MyByteEnum.ONE.getCode() == d));
     }
 
 

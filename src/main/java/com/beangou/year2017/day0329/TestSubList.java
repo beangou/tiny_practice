@@ -25,7 +25,9 @@ public class TestSubList {
         }
 
 
-        List<String> list2 = list.subList(0, 20);
+
+
+        List<String> list2 = list.subList(0, 10);
         System.out.println("list=" + list);
         System.out.println("list2=" + list2);
 
