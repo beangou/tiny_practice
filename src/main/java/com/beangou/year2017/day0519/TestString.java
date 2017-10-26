@@ -1,6 +1,7 @@
 package com.beangou.year2017.day0519;
 
 import org.apache.commons.lang3.StringUtils;
+import org.codehaus.jackson.map.util.BeanUtil;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -18,6 +19,21 @@ import java.util.stream.Collectors;
  * @since 1.0
  */
 public class TestString {
+
+    @Test
+    public void valueOf() {
+
+        String title = "Caroline Kaam Harris | Professional Profile - LinkedIn";
+        System.out.println("contains | =" + title.contains(" | "));
+        String name = title.split(" \\|")[0];
+        System.out.println("name=" + name + "ssss");
+        int lastIndex = name.lastIndexOf(" ");
+
+        String firstName = name.substring(0, lastIndex);
+        String lastName = name.substring(lastIndex+1);
+        System.out.println("firstname=" + firstName + "; lastname=" + lastName);
+        System.out.println("sss=" + String.valueOf(""+null));
+    }
 
     @Test
     public void trim() {

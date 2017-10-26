@@ -50,6 +50,25 @@ public class TestInnerClass {
     public static void main(String[] args) {
         new TestInnerClass().strong();
         new TestInnerClass().kind(true);
+        new MyInterface(){
+            @Override
+            public void hello() {
+                System.out.println("hello");
+            }
+        };
+
+//        final String a = "name";
+        new MyInterface() {
+            @Override
+            public void hello() {
+                System.out.println("hello");
+            }
+        };
+
+    }
+
+    interface MyInterface {
+        void hello();
     }
 }
 

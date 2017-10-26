@@ -16,6 +16,7 @@ public class ShuaData {
 //        公司： 200   Apple
 
         for (int i = 0; i < 350; i++) {
+            // :tofu :
             String sql = "";
         }
     }

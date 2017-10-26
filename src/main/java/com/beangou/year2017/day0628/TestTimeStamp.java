@@ -2,6 +2,8 @@ package com.beangou.year2017.day0628;
 
 import org.junit.Test;
 
+import java.util.Date;
+
 /**
  * <pre>
  * 说明：
@@ -20,7 +22,11 @@ public class TestTimeStamp {
     // 因此，在这一天之前，上千万的网络应用要么采用新的时间戳规范，要么迁移到64位系统，后者可以给时间戳争取“一点”时间。
     @Test
     public void test() {
+        System.out.println("result= " + new Date(1504348409796L));
+        System.out.println("result= " + new java.sql.Date(1504348409796L));
+
         System.out.println("a1=" + System.currentTimeMillis());
+
     }
 
 }
