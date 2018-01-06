@@ -3,6 +3,7 @@ package com.beangou.year2016.day1113;
 import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.lang.reflect.Constructor;
+import java.lang.reflect.Parameter;
 
 /**
  * Created by liutb on 2016/11/13.
@@ -23,18 +24,30 @@ public class TestReflect {
 
     }
 
+    public TestReflect(Float height) {
+
+    }
+
+    TestReflect(double a) {
+
+    }
+
     public static void main(String[] args) {
         Constructor[] cs = TestReflect.class.getConstructors();
         System.out.println("cs len =" + cs.length);
         for (int i = 0; i < cs.length; i++) {
-            System.out.println(cs[i].getModifiers() + " " + cs[i].getName() + " " + cs[i].getParameters());
+            System.out.println("getConstructors=>"+cs[i].getModifiers() + " " + cs[i].getName() + " parameter+>");
+            Parameter[] parameters = cs[i].getParameters();
+            for (int j = 0; j < parameters.length; j++) {
+                System.out.println(parameters[j].getType().getName());
+            }
         }
 
         System.out.println("***********");
         Constructor[] cs2 = TestReflect.class.getDeclaredConstructors();
-        System.out.println("cs len =" + cs2.length);
+        System.out.println("cs2 len =" + cs2.length);
         for (int i = 0; i < cs2.length; i++) {
-            System.out.println(cs2[i].getModifiers() + " " + cs2[i].getName() + " " + cs2[i].getParameters());
+            System.out.println("getDeclaredConstructors=>"+cs2[i].getModifiers() + " " + cs2[i].getName() + " " + cs2[i].getParameters());
         }
         int[] arr = new int[]{1, 3, 6, 88};
         int[] newArr = (int[])goodCopyArray(arr, 6);

@@ -2,9 +2,7 @@ package com.beangou.year2017.month02.day0207;
 
 import org.junit.Test;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
+import java.util.concurrent.*;
 
 /**
  * Created by liutb on 2017/2/6.
@@ -12,6 +10,36 @@ import java.util.concurrent.Future;
  * @since 1.0.0
  */
 public class TestThreadPool {
+
+    @Test
+    public void newThreadPool() {
+        int a = Integer.SIZE;
+        ThreadPoolExecutor threadPoolExecutor = null;
+        try {
+            threadPoolExecutor = new ThreadPoolExecutor(2, 5, 1L, TimeUnit.DAYS, null);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return;
+        }
+
+        System.out.println("activeCount=" + threadPoolExecutor.getActiveCount());
+        threadPoolExecutor.submit(() -> {
+            try {
+                Thread.sleep(5000L);
+                System.out.println("get a task.");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+        System.out.println("activeCount=" + threadPoolExecutor.getActiveCount());
+        try {
+            Thread.sleep(9000L);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("activeCount=" + threadPoolExecutor.getActiveCount());
+
+    }
 
     @Test
     public void testThreadPoolExecutor() {

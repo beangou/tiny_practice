@@ -11,18 +11,20 @@ import java.util.Hashtable;
  */
 public class TestThreadLocal {
     public static void main(String[] args) {
-        ThreadLocal<SimpleDateFormat> local = new ThreadLocal<SimpleDateFormat>(){
-            @Override
-            protected SimpleDateFormat initialValue() {
-                return new SimpleDateFormat("yyyy-MM-dd");
-            }
-        };
+//        ThreadLocal<Object> objectThreadLocal = ThreadLocal.withInitial();
+//        objectThreadLocal.get();
+        ThreadLocal<SimpleDateFormat> local = ThreadLocal.withInitial(() -> new SimpleDateFormat("yyyy-MM-dd"));
         System.out.println(local.get().format(new Date()));
 
-        if(local == null)
+        System.out.println("local=" + local.get());
+        local.set(null);
+        System.out.println("local=" + local.get());
+
+        if(local == null) {
             System.out.println("");
-        else
+        } else {
             System.out.println(33);
+        }
 
         Hashtable table = null;
     }

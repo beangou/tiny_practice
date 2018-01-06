@@ -25,6 +25,12 @@ public class JsonTest {
     private static ObjectMapper objectMapper = new ObjectMapper();
 
     @Test
+    public void deseriarese() {
+        String str = "{\"website\": \"\", \"country\": \"\", \"name\": \"sunstar engineering usa inc\", \"baseInfo\": {\"mail\": \"sedward@sunstarea.com\", \"telephone\": \"937 7468575\",\"address\": {\"country\": \"\", \"address\": \"85 s. pioneer blvd., springboro, ohio (oh), 45066, usa\"}}}";
+
+    }
+
+    @Test
     public void see() {
         System.out.println("result=" + toJsonString(new Person(null, 0), true));
     }

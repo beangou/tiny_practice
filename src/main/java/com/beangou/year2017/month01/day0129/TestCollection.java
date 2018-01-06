@@ -1,5 +1,6 @@
 package com.beangou.year2017.month01.day0129;
 
+import com.beangou.year2017.Entity;
 import org.junit.Test;
 
 import java.util.*;
@@ -106,6 +107,20 @@ public class TestCollection {
         Dog dog = (Dog) list.get(1);
         System.out.println(dog);
     }
+
+    @Test
+    public void testAdd() {
+        List list = new ArrayList();
+        list.add(new Cat("aa"));
+        System.out.println("list=" + list);
+
+        List list2 = new ArrayList();
+        list.addAll(list2); // error
+
+//        List list2 = null;
+//        list.addAll(list2); // error
+        System.out.println("list=" + list);
+    }
 }
 
 interface MyInterface {
@@ -125,6 +140,15 @@ class Person {
     }
 }
 
-class Dog {
+class Dog extends Entity {
+    private String name;
+}
 
+
+class Cat extends Entity {
+    private String name;
+
+    public Cat(String name) {
+        this.name = name;
+    }
 }

@@ -20,6 +20,18 @@ import java.util.stream.Collectors;
 public class TestString {
 
     @Test
+    public void splitAndTrim() {
+        String str = "ss kkk   ddsd ds  dds kk   ";
+        String[] strArr = str.split(" ");
+        for (String e : strArr) {
+            if ("".equals(e)) {
+                continue;
+            }
+            System.out.println("start=" + e + "=end");
+        }
+    }
+
+    @Test
     public void valueOf() {
 
         String title = "Caroline Kaam Harris | Professional Profile - LinkedIn";
@@ -82,5 +94,7 @@ public class TestString {
 
 //        System.out.println("result=" + "https://buyer.onloon.com.cn/detail?shopId=151623511167744942&productId=ef7ccec260e64ac9be7c73094b6bfdd0".replace("productId=ef7ccec260e64ac9be7c73094b6bfdd0", "productId=ef7ccec260e64ac9be7c73094b6bfdd0&viewFrom=1"));
     }
+
+
 
 }

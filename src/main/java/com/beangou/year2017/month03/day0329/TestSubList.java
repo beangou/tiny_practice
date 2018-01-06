@@ -24,9 +24,6 @@ public class TestSubList {
             list.add("111111" + i);
         }
 
-
-
-
         List<String> list2 = list.subList(0, 10);
         System.out.println("list=" + list);
         System.out.println("list2=" + list2);
@@ -36,6 +33,16 @@ public class TestSubList {
 
 //        List<String> secondeList = null;
 //        list2.addAll(secondeList);
+    }
+
+    @Test
+    public void sub() {
+        List<String> list = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            list.add("111111" + i);
+        }
+        List<String> result = list.subList(0, 11);
+        System.out.println("result=" + result);
     }
 
 }

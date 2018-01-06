@@ -48,6 +48,7 @@ public class TestThread implements Runnable {
 //        try {
                 Thread thread = new Thread(new TestThread());
 //            thread.setDaemon(true);
+        thread.getState();
                 thread.start();
 //        } catch (Exception e) {
 //            System.out.println("9999999999");

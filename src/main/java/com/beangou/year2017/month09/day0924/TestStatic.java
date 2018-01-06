@@ -7,7 +7,19 @@ import org.junit.Test;
  */
 public class TestStatic {
 
-    static int b = 2;
+    public static int b = 2;
+
+    public static void access2() {
+        // 警告，编译时没问题的
+        int a = new TestStatic().b;
+        System.out.println("a =" + a);
+    }
+
+    @Test
+    public void access() {
+        access2();
+//        int a = new TestStatic().b;
+    }
 
     @Test
     public void staticProperty() {

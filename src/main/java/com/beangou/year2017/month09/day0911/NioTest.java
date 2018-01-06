@@ -4,8 +4,10 @@ import org.junit.Test;
 
 import java.io.*;
 import java.nio.ByteBuffer;
+import java.nio.CharBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.channels.SelectionKey;
+import java.nio.channels.Selector;
 import java.nio.channels.SocketChannel;
 
 /**
@@ -17,27 +19,49 @@ public class NioTest {
     public void socketNio() throws IOException {
         SocketChannel socketChannel = SocketChannel.open();
         socketChannel.configureBlocking(true);
-//        socketChannel.register()
+        Selector selector = Selector.open();
+        SelectionKey selectionKey = socketChannel.register(selector, SelectionKey.OP_ACCEPT);
+        selectionKey.attach(new Object());
+        selector.selectedKeys();
+        selector.select();
 //        SelectionKey;
+    }
+
+    @Test
+    public void readOnlySlice() {
+        CharBuffer charBuffer = CharBuffer.allocate(16);
+        char[] arr = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'};
+        charBuffer.put(arr);
+        CharBuffer readOnlyBuffer = charBuffer.asReadOnlyBuffer();
+        charBuffer.put('m');
+        readOnlyBuffer.put('k');
     }
 
     @Test
     public void nio() {
         RandomAccessFile randomAccessFile = null;
+        RandomAccessFile writeAccessFile = null;
         try {
             randomAccessFile = new RandomAccessFile("src/main/resources/config.properties", "rw");
+            writeAccessFile = new RandomAccessFile("src/main/resources/config_back.properties", "rw");
             FileChannel fileChannel = randomAccessFile.getChannel();
-            ByteBuffer buffer = ByteBuffer.allocate(1024);
+            FileChannel writeChannel = writeAccessFile.getChannel();
+            ByteBuffer buffer = ByteBuffer.allocate(3);
             int bytesRead = fileChannel.read(buffer);
             System.out.println(bytesRead);
 
             while (bytesRead != -1) {
-                System.out.println("before buffer=" + buffer);
+//                System.out.println("before buffer=" + buffer);
+//                buffer.flip();
+//                System.out.println("after buffer=" + buffer);
+//                while (buffer.hasRemaining()) {
+//                    System.out.print((char)buffer.get());
+//                }
+//                buffer.getInt()
+//                buffer.compact();
                 buffer.flip();
-                System.out.println("after buffer=" + buffer);
-                while (buffer.hasRemaining()) {
-                    System.out.print((char)buffer.get());
-                }
+                writeChannel.write(buffer);
+                buffer.clear();
                 buffer.compact();
                 bytesRead = fileChannel.read(buffer);
             }
@@ -53,7 +77,7 @@ public class NioTest {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            System.out.println("888");
+//            System.out.println("888");
         }
     }
 
