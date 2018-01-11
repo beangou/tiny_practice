@@ -39,3 +39,7 @@ public class TestNumber {
         System.out.println(new BigDecimal(1.2).divide(new BigDecimal(3)));
     }
 }
+
+class SeeAccess {
+
+}

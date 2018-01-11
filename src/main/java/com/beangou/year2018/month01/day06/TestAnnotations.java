@@ -1,11 +1,10 @@
 package com.beangou.year2018.month01.day06;
 
+import com.beangou.year2017.month01.day0103.TestNumber;
 import org.junit.Test;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import javax.annotation.PostConstruct;
+import java.lang.annotation.*;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
@@ -16,6 +15,18 @@ import java.lang.reflect.Method;
  */
 
 public class TestAnnotations {
+
+    @Test
+    public void testInherted() {
+        TestNumber testNumber = new TestNumber();
+// 默认构造函数的访问权限和其所在当前类访问权限相同
+        //        SeeAccess seeAccess = new SeeAccess();
+        System.out.println("len=" + Son.class.getAnnotations().length);
+        System.out.println("len=" + Son.class.getDeclaredAnnotations().length);
+        System.out.println("len=" + Son.class.getConstructors().length);
+        System.out.println("len=" + Son.class.getDeclaredConstructors().length);
+
+    }
 
     @Test
     public void run() throws IllegalAccessException, InstantiationException {
@@ -79,3 +90,34 @@ class BeangouClass {
 // error
 //    int hashCode();
 }
+
+@Target({ElementType.TYPE})
+@Retention(RetentionPolicy.RUNTIME)
+@Inherited
+@interface AnnotationSuper {
+    boolean ok();
+}
+
+@AnnotationSuper(ok=true)
+class Super {
+}
+
+class Son extends Super {
+//    public Son() {
+//
+//    }
+}
+
+interface MyInterface {
+
+}
+
+//注解不可继承或者实现接口
+//@interface MyAnnotation extends or implements MyInterface {
+//
+//}
+
+//注解不支持继承
+//@interface TestAnnotationInherit extends AnnotationSuper {
+//
+//}
