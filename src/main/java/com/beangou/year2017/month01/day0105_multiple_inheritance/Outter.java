@@ -9,6 +9,8 @@ public class Outter {
 
     private Inner inner;
 
+    private String name;
+
     public Outter() {
         inner = new Inner();
 //        inner.doTest();

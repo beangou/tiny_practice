@@ -8,7 +8,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpHost;
 import org.apache.http.NameValuePair;
-import org.apache.http.client.HttpRequestRetryHandler;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.config.RequestConfig.Builder;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -23,12 +22,12 @@ import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.net.ssl.SSLException;
 import java.io.IOException;
-import java.io.InterruptedIOException;
 import java.net.URLEncoder;
-import java.net.UnknownHostException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
 
 public class HttpClientUtil {
 
@@ -107,6 +106,41 @@ public class HttpClientUtil {
 		return builder;
 	}
 
+	public String get(String uri) throws Exception {
+		logger.info("开始请求：uri={}", uri);
+
+		CloseableHttpResponse response = null;
+		try {
+			HttpGet httpGet = new HttpGet(uri);
+			httpGet.setConfig(requestConfig);
+			response = httpClient.execute(httpGet);
+			HttpEntity entity = response.getEntity();
+
+			if (response.getStatusLine().getStatusCode() != 200) {
+				httpGet.abort();
+				logger.error("url={}, code={}", uri, response.getStatusLine().getStatusCode());
+				throw new Exception(String.format("http请求出错，url=%s", uri));
+			}
+			String content = EntityUtils.toString(response.getEntity());
+			// do something useful with the response body and ensure it is fully consumed
+			EntityUtils.consume(entity);
+			if (StringUtils.isBlank(content)) {
+				logger.error("请求返回结果为空, uri={}", uri);
+				return null;
+			}
+			return content;
+		} catch (Exception e) {
+			logger.error("请求：uri={}, 失败", uri, e);
+			throw new Exception(String.format("http请求出错，url=%s", uri));
+		} finally {
+			if (response != null) {
+				// In order to ensure correct deallocation of system resources
+				// the user MUST call CloseableHttpResponse#close() from a finally clause
+				response.close();
+			}
+		}
+	}
+
 	public <T> T get(String uri, Map<String, Object> params, TypeReference<T> typeReference, Feature... features)
 			throws Exception {
 		logger.info("开始请求：uri={}, params={}", uri, params);
@@ -156,7 +190,7 @@ public class HttpClientUtil {
             if (response != null) {
                 // In order to ensure correct deallocation of system resources
                 // the user MUST call CloseableHttpResponse#close() from a finally clause
-//                response.close();
+                response.close();
             }
         }
 	}
