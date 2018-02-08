@@ -1,0 +1,34 @@
+package com.beangou.util;
+
+import org.apache.commons.lang3.StringUtils;
+
+import java.util.Arrays;
+import java.util.List;
+
+/**
+ * @author 小彬
+ * @version V1.0 2018/2/8 下午1:34
+ * @since V1.0
+ */
+public class ListUtil {
+
+    /**
+     * list 转 字符串，以指定分隔符分开
+     * @param list
+     * @return
+     */
+    public static String list2String(List<String> list, String separator) {
+        return StringUtils.join(list.toArray(), separator);
+    }
+
+    /**
+     * 字符串转list，字符串以指定字符分开
+     * @param str
+     * @param separator
+     * @return
+     */
+    public static List<String> string2List(String str, String separator) {
+        return Arrays.asList(StringUtils.split(str, separator));
+    }
+
+}

@@ -11,11 +11,55 @@ public class TestClassLoader {
 
     public static void main(String[] args) {
 //        System.out.println("result=" + new Son().getM());
-//        System.out.println("result=" + Son.staticM);
+        System.out.println("result=" + Son.staticM);
 
-        new Test().doSth();
+//        User user = new User("222");
+//
+//
+//        new Test().doSth();
+//
+//        try {
+//            Object obj = Class.forName("sun.misc.Launcher");
+////            Object obj = Class.forName("sun.misc.Launcher1");
+//            System.out.println("name=" + obj.getClass().getSimpleName());
+//
+//            TestNoClassDefFoundError.say();
+//
+//            System.out.println("result="+System.getProperty("java.classPath"));
+//        } catch (ClassNotFoundException e) {
+//            e.printStackTrace();
+//        }
+
     }
 
+}
+
+class User{
+    private static String USER_ID = getUserId();
+
+    public User(String id){
+        this.USER_ID = id;
+    }
+    private static String getUserId() {
+        throw new RuntimeException("UserId Not found");
+    }
+}
+
+class TestNoClassDefFoundError {
+    private int id;
+    private static TestNoClassDefFoundError error = new TestNoClassDefFoundError(getId());
+
+    private TestNoClassDefFoundError(int id) {
+        this.id = id;
+    }
+
+    public static void say() {
+        System.out.println("hello.");
+    }
+
+    public static int getId() {
+        throw new RuntimeException("can't get id.");
+    }
 }
 
 @Getter

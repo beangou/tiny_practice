@@ -66,6 +66,9 @@ public class TestEqual {
 
     @Test
     public void testByteListContains() {
+
+        System.out.println("result=" + (8 + (8 >> 1)));
+
         List<Byte> list = new ArrayList<>();
         list.add(new Byte("1"));
         list.add(new Byte("1"));
