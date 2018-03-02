@@ -14,16 +14,21 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.ContentType;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.client.DefaultHttpRequestRetryHandler;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
+import org.codehaus.jackson.map.util.JSONPObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.net.URLEncoder;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -31,7 +36,7 @@ import java.util.Map;
 
 public class HttpClientUtil {
 
-	private Logger logger = LoggerFactory.getLogger(this.getClass());
+	private static Logger logger = LoggerFactory.getLogger(HttpClientUtil.class);
 
 	// 翻墙代理IP
 	private  String proxyHost = "127.0.0.1";
@@ -242,4 +247,29 @@ public class HttpClientUtil {
             }
         }
 	}
+
+	public static <T> T post(String uri, String params, TypeReference<T> typeReference) throws Exception {
+        CloseableHttpClient httpclient = HttpClients.createDefault();
+        HttpPost post = new HttpPost(uri);
+        StringEntity entity = new StringEntity(params, ContentType.create("application/json", Charset.forName("utf-8")));
+        post.setEntity(entity);
+        try {
+            CloseableHttpResponse response = httpclient.execute(post);
+            if (response.getStatusLine().getStatusCode() != 200) {
+                post.abort();
+                logger.error("post url={}, params={}, code={}", uri, params, response.getStatusLine().getStatusCode());
+                throw new Exception(String.format("http请求出错，url=%s", uri));
+            }
+            String content = EntityUtils.toString(response.getEntity());
+            System.out.println("content=" + content);
+            EntityUtils.consume(entity);
+            if (StringUtils.isBlank(content)) {
+                return null;
+            }
+            return JSON.parseObject(content, typeReference, null);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

@@ -1,5 +1,10 @@
 package com.beangou.util.httpclient;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.TypeReference;
+import com.beangou.year2018.month03.day02.HelloVo;
+import com.beangou.year2018.month03.day02.PersonForm;
+import com.beangou.year2018.month03.day02.Shoe;
 import org.apache.commons.collections.map.HashedMap;
 import org.junit.Test;
 
@@ -19,6 +24,16 @@ public class HttpClientUtilTest {
     public static void main(String[] args) {
         System.out.println("see.");
         new HttpClientUtilTest().testGet();
+    }
+
+    @Test
+    public void json() throws Exception {
+        PersonForm form = new PersonForm();
+        form.setName("hello");
+        form.setAge(10);
+        form.setSonList(Arrays.asList("one", "two", "three"));
+        form.setShoeList(Arrays.asList(new Shoe("nike", 11.1F), new Shoe("ln", 1.1F)));
+        System.out.println("result=" + HttpClientUtil.post("http://localhost:8080/controller/hello/ioc", JSON.toJSONString(form), new TypeReference<HelloVo>(){}));
     }
 
     @Test
