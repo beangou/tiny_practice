@@ -1,6 +1,7 @@
 package com.beangou.util;
 
 import org.apache.commons.lang3.StringUtils;
+import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.List;
@@ -29,6 +30,14 @@ public class ListUtil {
      */
     public static List<String> string2List(String str, String separator) {
         return Arrays.asList(StringUtils.split(str, separator));
+    }
+
+    @Test
+    public void see() {
+        String[] aa = "11,22,33,44,55".split(",");
+        List<String> list = Arrays.asList(aa);
+        System.out.println("ss=" + list.size());
+
     }
 
 }

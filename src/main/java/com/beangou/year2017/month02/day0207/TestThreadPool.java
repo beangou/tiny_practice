@@ -16,24 +16,29 @@ public class TestThreadPool {
         int a = Integer.SIZE;
         ThreadPoolExecutor threadPoolExecutor = null;
         try {
-            threadPoolExecutor = new ThreadPoolExecutor(2, 5, 1L, TimeUnit.DAYS, null);
+            BlockingQueue queue = new ArrayBlockingQueue(10);
+            threadPoolExecutor = new ThreadPoolExecutor(2, 5, 1L, TimeUnit.DAYS, queue);
         } catch (Exception e) {
             e.printStackTrace();
             return;
         }
 
-        System.out.println("activeCount=" + threadPoolExecutor.getActiveCount());
-        threadPoolExecutor.submit(() -> {
-            try {
-                Thread.sleep(5000L);
-                System.out.println("get a task.");
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        });
-        System.out.println("activeCount=" + threadPoolExecutor.getActiveCount());
+        int threadCount = 10;
+        System.out.println("begin activeCount=" + threadPoolExecutor.getActiveCount());
+        while (threadCount > 1) {
+            threadPoolExecutor.submit(() -> {
+                try {
+                    Thread.sleep(5000L);
+                    System.out.println("get a task.");
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            });
+            threadCount--;
+        }
+        System.out.println("after activeCount=" + threadPoolExecutor.getActiveCount());
         try {
-            Thread.sleep(9000L);
+            Thread.sleep(90000L);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

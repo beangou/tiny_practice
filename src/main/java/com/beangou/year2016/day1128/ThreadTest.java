@@ -18,7 +18,7 @@ public class ThreadTest implements Runnable {
         while(true) {
             try{
                 System.out.println(name);
-                Thread.sleep(10000);
+                Thread.sleep(100000);
                 System.out.println("***********");
                 i++;
                 if(i > 2) {
@@ -48,16 +48,19 @@ public class ThreadTest implements Runnable {
         new Thread(test).start();
         new Thread(test).start();
         new Thread(test).start();
+
         new Thread(test).start();
         new Thread(test).start();
         new Thread(test).start();
         new Thread(test).start();
         new Thread(test).start();
+
         new Thread(test).start();
         new Thread(test).start();
         new Thread(test).start();
         new Thread(test).start();
         new Thread(test).start();
+
         new Thread(test).start();
         new Thread(test).start();
         new Thread(test).start();

@@ -1,5 +1,7 @@
 package com.beangou.year2017;
 
+import org.junit.Test;
+
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -9,6 +11,57 @@ import java.util.concurrent.TimeUnit;
  */
 public class TestThread implements Runnable {
 
+    @Test
+    public void myJoin() throws InterruptedException {
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("hahaha");
+                try {
+                    Thread.sleep(10000L);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        thread.start();
+        thread.join();
+    }
+
+    @Test
+    public void see() throws InterruptedException {
+        new Thread(() -> {
+            System.out.println("thread1");
+            walk();
+        }).start();
+
+        new Thread(() -> {
+                System.out.println("thread2");
+                jump();
+            }
+        ).start();
+        Thread.sleep(1000L * 1000);
+    }
+
+    public synchronized void walk() {
+        try {
+            System.out.println("start walking.");
+            Thread.sleep(1000L * 10);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("end walking");
+    }
+
+    public synchronized void jump() {
+        try {
+            System.out.println("start jumping.");
+            Thread.sleep(1000L * 10);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("end jumping");
+    }
 
     /**
      * When an object implementing interface <code>Runnable</code> is used

@@ -60,9 +60,9 @@ public class HttpClientUtil {
 
 	public HttpClientUtil(int connectTimeout, int socketTimeout, int connectionRequestTimeout,
                           int maxConnPerRoute, int retryCount) {
-		builder.setConnectTimeout(connectTimeout);
-		builder.setSocketTimeout(socketTimeout);
-		builder.setConnectionRequestTimeout(connectionRequestTimeout);
+//		builder.setConnectTimeout(connectTimeout);
+//		builder.setSocketTimeout(socketTimeout);
+//		builder.setConnectionRequestTimeout(connectionRequestTimeout);
 		requestConfig = builder.build();
 		httpClient = HttpClients.custom().setMaxConnPerRoute(maxConnPerRoute)
 				.setRetryHandler(new DefaultHttpRequestRetryHandler(retryCount, true))
@@ -248,16 +248,42 @@ public class HttpClientUtil {
         }
 	}
 
-	public static <T> T post(String uri, String params, TypeReference<T> typeReference) throws Exception {
+	public static <T> T post(String uri, String jsonParams, TypeReference<T> typeReference) throws Exception {
         CloseableHttpClient httpclient = HttpClients.createDefault();
         HttpPost post = new HttpPost(uri);
-        StringEntity entity = new StringEntity(params, ContentType.create("application/json", Charset.forName("utf-8")));
+        StringEntity entity = new StringEntity(jsonParams, ContentType.create("application/json", Charset.forName("utf-8")));
         post.setEntity(entity);
         try {
             CloseableHttpResponse response = httpclient.execute(post);
             if (response.getStatusLine().getStatusCode() != 200) {
                 post.abort();
-                logger.error("post url={}, params={}, code={}", uri, params, response.getStatusLine().getStatusCode());
+                logger.error("post url={}, params={}, code={}", uri, jsonParams, response.getStatusLine().getStatusCode());
+                throw new Exception(String.format("http请求出错，url=%s", uri));
+            }
+            String content = EntityUtils.toString(response.getEntity());
+            System.out.println("content=" + content);
+            EntityUtils.consume(entity);
+            if (StringUtils.isBlank(content)) {
+                return null;
+            }
+            return JSON.parseObject(content, typeReference, null);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
+    public static <T> T get(String uri, String params, TypeReference<T> typeReference) throws Exception {
+        CloseableHttpClient httpclient = HttpClients.createDefault();
+        HttpGet get = new HttpGet(uri+"?"+params);
+        get.setHeader("Content-Type", "application/json");
+        StringEntity entity = new StringEntity(params, ContentType.create("application/json", Charset.forName("utf-8")));
+        try {
+            CloseableHttpResponse response = httpclient.execute(get);
+            if (response.getStatusLine().getStatusCode() != 200) {
+                get.abort();
+                logger.error("get url={}, params={}, code={}", uri, params, response.getStatusLine().getStatusCode());
                 throw new Exception(String.format("http请求出错，url=%s", uri));
             }
             String content = EntityUtils.toString(response.getEntity());

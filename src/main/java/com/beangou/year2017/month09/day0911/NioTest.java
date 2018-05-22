@@ -16,6 +16,13 @@ import java.nio.channels.SocketChannel;
 public class NioTest {
 
     @Test
+    public void register() throws FileNotFoundException {
+        FileInputStream fis = new FileInputStream("");
+        FileChannel fileChannel = fis.getChannel();
+
+    }
+
+    @Test
     public void socketNio() throws IOException {
         SocketChannel socketChannel = SocketChannel.open();
         socketChannel.configureBlocking(true);
@@ -24,6 +31,12 @@ public class NioTest {
         selectionKey.attach(new Object());
         selector.selectedKeys();
         selector.select();
+
+        FileOutputStream fos = new FileOutputStream("aa.txt");
+        fos.getChannel();
+
+        FileInputStream fis = new FileInputStream("bb.txt");
+        fis.getChannel();
 //        SelectionKey;
     }
 

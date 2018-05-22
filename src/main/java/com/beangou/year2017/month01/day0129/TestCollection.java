@@ -1,5 +1,6 @@
 package com.beangou.year2017.month01.day0129;
 
+import com.beangou.util.httpclient.HttpClientUtil;
 import com.beangou.year2017.Entity;
 import org.junit.Test;
 
@@ -11,6 +12,14 @@ import java.util.*;
  * @since 1.0.0
  */
 public class TestCollection {
+
+    public static int a = 0;
+
+    @Test
+    public void request() throws Exception {
+        String url = "https://pixabay.com/api/?safesearch=true&key=7763095-cae316d630980904e6557f440";
+        System.out.println("result=" + new HttpClientUtil().get(url));
+    }
 
     @Test
     public void testDebug() {
@@ -24,6 +33,21 @@ public class TestCollection {
         for (Map.Entry<String, Integer> entry : map.entrySet()) {
             System.out.println(entry.getKey() + ": " + entry.getValue());
         }
+        go();
+        a = 44;
+        System.out.println("abc");
+        boolean exist = (a == 44);
+        if (exist) {
+            System.out.println("hahaha");
+        }
+        a = 99;
+    }
+
+    private void go() {
+        System.out.println("lll");
+        a = 22;
+        System.out.println("00000");
+        a = 99;
     }
 
     @Test

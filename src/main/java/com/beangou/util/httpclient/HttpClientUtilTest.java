@@ -11,6 +11,7 @@ import org.junit.Test;
 import javax.net.ssl.SSLException;
 import java.net.UnknownHostException;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -27,6 +28,26 @@ public class HttpClientUtilTest {
     }
 
     @Test
+    public void accessFacebook() throws Exception {
+        String url = "https://graph.facebook.com/v2.8/me";
+        Map<String, Object> params = new HashMap<>();
+        params.put("access_token", "EAAFKc9GMDV4BAKmbbvxDKGvoAJwWgt2jiDeWpRJZBYUlXKxFbQq0aOPvoFB48qmZCs02PGRoSw279odZCZBQk4cxWyVrsbzgKPPKp0K1PAMyKuq6ypHheKGb0jB0CSMgKqZBN6wQ9lEGh9X1hVDYvTyB2Rnc8ZAz8ZD");
+        System.out.println("result=" + new HttpClientUtil(false).get(url, params, new TypeReference<String>(){}));
+    }
+
+    @Test
+    public void facebookGet() throws Exception {
+        Map<String, String> param = new HashMap<>();
+        param.put("file_url", "https://img.onloon.co/20180308145531310804219.gif");
+        param.put("description", "ddd Test Product02  https://market.onloon.cc/detail?shopId=165057710897810313&productId=3c8801807386443bbd7c26f87b34cc4a");
+        param.put("access_token", "EAACEdEose0cBANW7UBR0Fp3nRZB7ZAGuVWmGXJz5ZBQfXu2Wl4rYqBaGV8pY4R31Fl5ZCkgcV2MvJSwl3Jd95jyqu3sOZBE5INZAoJwYdzRJhDjBNaoVh2D7HwSZAnLCGi6QXmQla2M3I2AIDkZBpRnItylYc1VPC1Jc1do3UAgJgtt2Iuy4IVvJgnkUtZBxB9mDfyJJ3HQ3tYQZDZD");
+        String resp = HttpClientUtil.post("https://graph.facebook.com/v2.12/me/videos", JSON.toJSONString(param), new TypeReference<String>(){});
+        System.out.println("resp=" + resp);
+    }
+
+
+
+    @Test
     public void json() throws Exception {
         PersonForm form = new PersonForm();
         form.setName("hello");
@@ -34,6 +55,7 @@ public class HttpClientUtilTest {
         form.setSonList(Arrays.asList("one", "two", "three"));
         form.setShoeList(Arrays.asList(new Shoe("nike", 11.1F), new Shoe("ln", 1.1F)));
         System.out.println("result=" + HttpClientUtil.post("http://localhost:8080/controller/hello/ioc", JSON.toJSONString(form), new TypeReference<HelloVo>(){}));
+//        System.out.println("result=" + HttpClientUtil.get("http://localhost:8080/controller/hello/ioc", JSON.toJSONString(form), new TypeReference<HelloVo>(){}));
     }
 
     @Test

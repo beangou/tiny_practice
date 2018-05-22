@@ -18,6 +18,9 @@ public class TestArray {
 
     @Test
     public void initArr() {
+
+        Object[] objArr = {};
+
         Object[] objs = {new Object(), new Object()};
 
         Integer[][] objects = new Integer[5][3];
