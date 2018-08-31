@@ -22,7 +22,18 @@ public class TestHashMap {
             System.out.println("value=" + value);
         }
 
-        map.put("11", 99);
+        map.keySet();
+
+        map.put("555", 99);
+        map.put("222", 99);
+
+        HashMap<String, Integer> map2 = new HashMap();
+
+        map2.put("555", 99);
+        map2.put("3333", 99);
+
+        map2.putAll(map);
+        System.out.println("map2=" + map2);
 
         System.out.println("sss=" + (2 ^ 3));
 

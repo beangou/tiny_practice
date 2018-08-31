@@ -214,7 +214,7 @@ public class HttpClientUtil {
 				}
 			}
 		}
-		HttpEntity requetEntity = new UrlEncodedFormEntity(nameValuesPairs, "utf8");
+		HttpEntity requetEntity = new UrlEncodedFormEntity(nameValuesPairs);
 		httpPost.setEntity(requetEntity);
 		httpPost.setConfig(requestConfig);
 		CloseableHttpResponse response = null;

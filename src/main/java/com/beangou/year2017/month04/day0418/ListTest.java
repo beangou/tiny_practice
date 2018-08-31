@@ -23,6 +23,12 @@ public class ListTest {
 
     @Test
     public void testVector() {
+
+        System.out.println("result=" + (5+(5>>1)));
+        System.out.println("result=" + (5>>1));
+        System.out.println("result=" + (4>>1));
+        System.out.println("result=" + (3>>1));
+
         Vector<String> vector = new Vector<>(16);
         vector.iterator();
     }

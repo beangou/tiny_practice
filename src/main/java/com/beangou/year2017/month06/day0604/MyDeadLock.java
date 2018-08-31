@@ -11,13 +11,11 @@ public class MyDeadLock {
         Integer intLock = new Integer(5);
 
         Thread.currentThread().setName("main thread");
-        Thread anotherThread = new Thread(new Runnable() {
-            @Override
-            public void run() {
+        Thread anotherThread = new Thread(() -> {
             synchronized (strLock) {
                 try {
                     System.out.println("another thread get strLock");
-                    Thread.sleep(20000L);
+                    Thread.sleep(2000L);
                     synchronized (intLock) {
                         System.out.println("another thread get intLock");
                     }
@@ -25,18 +23,28 @@ public class MyDeadLock {
                     e.printStackTrace();
                 }
             }
-        }});
-
+        });
         anotherThread.setName("another thread");
         anotherThread.start();
-        Thread.sleep(5000L);
-        synchronized (intLock) {
-            System.out.println("main thread  get intLock");
-            Thread.sleep(20000L);
-            synchronized (strLock) {
-                System.out.println("main thread  get strLock");
+
+//        anotherThread.start();
+//        Thread.sleep(5000L);
+
+        Thread oneThread = new Thread(() -> {
+            synchronized (intLock) {
+                System.out.println("main thread  get intLock");
+                try {
+                    Thread.sleep(4000L);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                synchronized (strLock) {
+                    System.out.println("main thread  get strLock");
+                }
             }
-        }
+        });
+        oneThread.setName("one thread");
+        oneThread.start();
     }
 
 }

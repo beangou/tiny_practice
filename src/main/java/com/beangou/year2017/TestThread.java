@@ -13,6 +13,8 @@ public class TestThread implements Runnable {
 
     @Test
     public void myJoin() throws InterruptedException {
+        Thread.getAllStackTraces();
+
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {

@@ -12,7 +12,7 @@ public class TestInterruptedException extends Thread {
         isInterrupted();
     }
 
-
+    @Override
     public boolean isInterrupted() {
         System.out.println("result=" + Thread.currentThread().isInterrupted());
         interrupt();

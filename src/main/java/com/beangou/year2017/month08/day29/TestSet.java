@@ -5,6 +5,7 @@ import org.junit.Test;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * <pre>
@@ -31,6 +32,12 @@ public class TestSet {
         System.out.println("set=" + set);
 
         System.out.println("res=" + 365 * 24 * 60 * 60);
+    }
+
+    @Test
+    public void seeTreeSet() {
+        TreeSet<Integer> set = new TreeSet();
+        set.add(999);
     }
 
 }

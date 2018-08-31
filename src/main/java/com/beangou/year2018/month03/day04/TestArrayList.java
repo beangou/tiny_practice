@@ -1,5 +1,6 @@
 package com.beangou.year2018.month03.day04;
 
+import com.beangou.util.ListUtil;
 import org.junit.Test;
 
 import java.util.*;
@@ -13,6 +14,43 @@ import java.util.stream.Collectors;
 public class TestArrayList {
 
     public ArrayList<Integer> list = new ArrayList<>();
+
+    @Test
+    public void retainAll() {
+
+        String after = "";
+        String before = "";
+
+        List<String> afterList = ListUtil.string2List(after, ",");
+        List<String> beforeList = ListUtil.string2List(before, ",");
+
+        for (String beforObj : beforeList) {
+            if (afterList.contains(beforObj)) {
+                continue;
+            } else {
+                System.out.println(beforObj+",");
+            }
+        }
+
+        Collections.synchronizedList(new ArrayList<>());
+//        Collections.synchronizedCollection();
+
+        list.add(2);
+        list.add(3);
+        list.add(4);
+        list.add(5);
+        list.add(6);
+        System.out.println("list=" + list + ",size=" + list.size());
+        list.clear();
+        System.out.println("list=" + list + ",size=" + list.size());
+        List<Integer> list2 = new ArrayList<>(8);
+        list2.add(2);
+        list2.add(4);
+        list2.add(8);
+
+        list.retainAll(list2);
+        System.out.println("result=" + list);
+    }
 
     @Test
     public void filter() {

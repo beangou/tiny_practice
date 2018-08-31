@@ -3,6 +3,9 @@ package com.beangou.year2016.day1126;
 import org.junit.Test;
 
 import java.util.*;
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * Created by liutb on 2016/11/26.
@@ -10,6 +13,29 @@ import java.util.*;
  * @since 1.0.0
  */
 public class CollectionTest {
+
+    @Test
+    public void see() {
+
+        List<Integer> resultList = new CopyOnWriteArrayList();
+        Integer[] intArr = new Integer[]{1,2,3,4,5,6,7,8,9,10,11,12,13};
+        List<Integer> list = Arrays.asList(intArr);
+        int len = list.size();
+        System.out.println("11=" + list.subList(0, len/5));
+        System.out.println("11=" + list.subList(len/5, 2*len/5));
+        System.out.println("11=" + list.subList(2*len/5, 3*len/5));
+        System.out.println("11=" + list.subList(3*len/5, 4*len/5));
+        System.out.println("11=" + list.subList(4*len/5, 5*len/5));
+
+
+        ExecutorService executorService = Executors.newFixedThreadPool(5);
+        executorService.submit(() -> resultList.addAll(list.subList(0, len/5)));
+        executorService.submit(() -> resultList.addAll(list.subList(len/5, 2*len/5)));
+        executorService.submit(() -> resultList.addAll(list.subList(2*len/5, 3*len/5)));
+        executorService.submit(() -> resultList.addAll(list.subList(3*len/5, 4*len/5)));
+        executorService.submit(() -> resultList.addAll(list.subList(4*len/5, 5*len/5)));
+        System.out.println("sss=" + resultList);
+    }
 
     @Test
     public void checkedView() {

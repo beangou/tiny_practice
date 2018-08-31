@@ -9,6 +9,7 @@ import java.util.Map;
 /**
  * 1. LinkedHashMap继承了HashMap，并且实现了Map
  * 2. 既然HashMap已经实现了Map，为何LinkedHashMap还要实现Map
+ * ANSWER: 自己实现Map相应的接口，而不是继承HashMap已经实现的方法
  * @author 小彬
  * @version V1.0 2018/4/27 上午12:05
  * @since V1.0
