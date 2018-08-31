@@ -13,6 +13,7 @@ public class TestException {
     @Test
     public void trigger() {
         try {
+            // see
             see();
         } catch (Exception e) {
             System.out.println("catched.");
