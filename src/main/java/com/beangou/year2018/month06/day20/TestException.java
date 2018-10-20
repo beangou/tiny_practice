@@ -12,6 +12,11 @@ public class TestException {
 
     @Test
     public void trigger() {
+
+        System.out.println("SSSS".contains("sss"));
+
+        System.out.println("  ru   slt\n".trim()+"eeeee");
+
         try {
             // see hahaha
             see();

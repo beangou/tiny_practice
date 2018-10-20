@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import java.util.HashMap;
 import java.util.Hashtable;
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -12,6 +13,25 @@ import java.util.concurrent.ConcurrentHashMap;
  * @since 1.0.0
  */
 public class TestConcurrentHashMap {
+
+
+    @Test
+    public void testRemove() {
+        Map<String, Integer> map = new ConcurrentHashMap<>();
+        map.put("1", 1);
+        map.put("2", 2);
+        map.put("3", 3);
+
+        System.out.println("map =" + map);
+        map.remove("1");
+        System.out.println("map =" + map);
+        map.remove("2");
+        System.out.println("map =" + map);
+        map.remove("3");
+        System.out.println("map =" + map);
+        System.out.println("size =" + map.size());
+
+    }
 
     @Test
     public void testHash() {

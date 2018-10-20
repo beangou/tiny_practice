@@ -67,6 +67,7 @@ public class TestThreadPool {
         }
 
         ExecutorService executorService1 = Executors.newWorkStealingPool();
+        Executors.newCachedThreadPool();
 
         Executors.newSingleThreadExecutor();
         Executors.newSingleThreadScheduledExecutor();

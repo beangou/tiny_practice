@@ -12,6 +12,41 @@ import java.util.concurrent.*;
  */
 public class TestExecutors {
 
+    @Test
+    public void runTask() throws ExecutionException, InterruptedException {
+        ExecutorService executorService = Executors.newSingleThreadExecutor();
+        Future future = executorService.submit(() -> {
+            System.out.println("hahah out.");
+            try {
+                Thread.sleep(5000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+        System.out.println("result=" + future.get());
+    }
+
+    @Test
+    public void future() {
+        ExecutorService executorService = Executors.newSingleThreadExecutor();
+        Future<String> future = executorService.submit(() -> haha());
+
+        try {
+            System.out.println("result=" + future.get());
+        } catch (InterruptedException e) {
+            System.out.println("catch one.");
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            System.out.println("catch two.");
+            e.printStackTrace();
+        }
+    }
+
+    public String haha() {
+        throw new RuntimeException("hahahah");
+//        return "aaa";
+    }
+
     /**
      * shutdownNow都能stop线程池里面的方法
      */
@@ -186,10 +221,13 @@ public class TestExecutors {
 
 //        ThreadPoolExecutor executor = new ThreadPoolExecutor();
 
-//        ExecutorService service = Executors.newFixedThreadPool(10);
-        ExecutorService service = Executors.newSingleThreadExecutor();
+        ExecutorService service = Executors.newFixedThreadPool(10);
+//        ExecutorService service = Executors.newSingleThreadExecutor();
 
-
+        ThreadPoolExecutor executor = new ThreadPoolExecutor(3, 6, 10, TimeUnit.MINUTES,
+                new ArrayBlockingQueue(100), r -> new Thread(), new ThreadPoolExecutor.AbortPolicy());
+        executor.getLargestPoolSize();
+        executor.getActiveCount();
 
 //        service.execute(() -> {
 //            int i = 0;

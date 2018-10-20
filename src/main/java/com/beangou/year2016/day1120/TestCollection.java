@@ -31,7 +31,11 @@ public class TestCollection {
         list2.add("1");
         list2.add("6");
 
-//        boolean b = list1.retainAll(list2);
+        list1.addAll(list2);
+        System.out.println("retail result=" + list1);
+
+        boolean b = list1.retainAll(list2);
+        System.out.println("retail result=" + list1);
         list1.removeAll(list2);
         for (String str: list1) {
             System.out.println(str);

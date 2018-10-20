@@ -17,8 +17,8 @@ public class TestExtends {
 
         MySuper mySuper = new MySuper();
         mySuper.setB(222);
-        MySub mySub = (MySub) mySuper;
-        System.out.println("bb=" + mySub.getB());
+//        MySub mySub = (MySub) mySuper;
+//        System.out.println("bb=" + mySub.getB());
     }
 }
 //@Getter
