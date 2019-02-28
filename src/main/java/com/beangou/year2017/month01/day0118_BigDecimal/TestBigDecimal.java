@@ -9,7 +9,7 @@ import java.math.BigDecimal;
  */
 public class TestBigDecimal {
     public static void main(String[] args) {
-        System.out.println(new BigDecimal("1"));
+        System.out.println(new BigDecimal("1").negate());
         System.out.println(new BigDecimal("0.33232"));
         System.out.println(new BigDecimal("0.6").toString());
     }

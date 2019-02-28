@@ -3,6 +3,7 @@ package com.beangou.util;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
+import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.List;
 
@@ -28,6 +29,21 @@ public class ListUtil {
     public static String list2String(List<String> list, String separator) {
         return StringUtils.join(list.toArray(), separator);
     }
+
+    /**
+     * list转为
+     * @param list
+     * @return
+     */
+    public static <T> T[] list2Arr(List<T> list, Class<T> type) {
+        if (list == null || type == null) {
+            return null;
+        }
+        T[] arr = (T[]) Array.newInstance(type, list.size());
+        list.toArray(arr);
+        return arr;
+    }
+
 
     /**
      * 字符串转list，字符串以指定字符分开

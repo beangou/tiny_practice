@@ -14,6 +14,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  * @since 1.0
  */
 public class Entity {
+
     @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);

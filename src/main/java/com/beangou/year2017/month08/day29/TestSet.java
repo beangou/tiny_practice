@@ -2,10 +2,7 @@ package com.beangou.year2017.month08.day29;
 
 import org.junit.Test;
 
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 /**
  * <pre>

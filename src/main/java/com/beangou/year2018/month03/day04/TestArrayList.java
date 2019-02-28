@@ -1,6 +1,7 @@
 package com.beangou.year2018.month03.day04;
 
 import com.beangou.util.ListUtil;
+import org.apache.commons.collections.CollectionUtils;
 import org.junit.Test;
 
 import java.util.*;
@@ -14,6 +15,13 @@ import java.util.stream.Collectors;
 public class TestArrayList {
 
     public ArrayList<Integer> list = new ArrayList<>();
+
+    @Test
+    public void shuttle() {
+        List<String> list = Arrays.asList("小天", "万华", "李聪", "王康", "彭燕", "书记", "婷婷", "家贵", "老李");
+        Collections.shuffle(list);
+        System.out.println("result=" + list);
+    }
 
     @Test
     public void retainAll() {

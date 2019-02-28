@@ -13,6 +13,7 @@ public class TestObject {
 
     @Test
     public void test() {
+        System.out.println("result=" + (null == null));
         boolean x = true;
         int a = 9;
         if (a == 9) {

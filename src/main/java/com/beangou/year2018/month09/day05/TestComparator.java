@@ -1,5 +1,7 @@
 package com.beangou.year2018.month09.day05;
 
+import org.junit.Test;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -12,7 +14,19 @@ import java.util.stream.Collectors;
  */
 public class TestComparator {
 
+
+    @Test
+    public void comareIntAndByte() {
+        byte a = 1;
+        Integer b = 1;
+        System.out.println("result=" + (a == b));
+        b = null;
+        System.out.println("result=" + (a == b));
+    }
+
     public static void main(String[] args) {
+
+
         List<Person> personList = new ArrayList<>();
         Person person1 = new Person(1);
         Person person2 = new Person(4);

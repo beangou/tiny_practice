@@ -1,7 +1,10 @@
 package com.beangou.year2017.month06.day0623;
 
+import com.beangou.year2017.Entity;
+import lombok.Data;
 import org.junit.Test;
 
+import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Date;
 
@@ -16,6 +19,18 @@ import java.util.Date;
  * @since 1.0
  */
 public class TestArray {
+
+    @Test
+    public void genericArr() {
+        Person[] peopleArr = newArray(Person.class, 5);
+        for (int i = 0; i < peopleArr.length; i++) {
+            System.out.println("result=" + peopleArr[i]);
+        }
+    }
+
+    private <T> T[] newArray(Class<T> t, int size) {
+        return (T[])Array.newInstance(t, size);
+    }
 
     @Test
     public void initArr() {
@@ -50,4 +65,11 @@ public class TestArray {
 //        objs2 = {new Object(), new Object()};
     }
 
+}
+
+@Data
+class Person extends Entity {
+    private String name;
+
+    private int age;
 }

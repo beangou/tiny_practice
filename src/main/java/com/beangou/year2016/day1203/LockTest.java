@@ -73,7 +73,7 @@ class Bank {
         lock.lock();
 //        this.intr
         try {
-            // 转账操作
+            // 杞处鎿嶄綔
             System.out.println("from " + from + " to " + to + ", transefer amount=" + amount);
             accounts[from] -= amount;
             accounts[to] += amount;
@@ -85,7 +85,7 @@ class Bank {
     }
 
     synchronized void safeTransfer2(int from, int to, int amount) {
-        // 转账操作
+        // 杞处鎿嶄綔
         System.out.println("from " + from + " to " + to + ", transefer amount=" + amount);
         accounts[from] -= amount;
         accounts[to] += amount;
@@ -94,7 +94,7 @@ class Bank {
     }
 
     void unsafeTransfer(int from, int to, int amount) {
-        // 转账操作
+        // 杞处鎿嶄綔
         System.out.println("from " + from + " to " + to + ", transefer amount=" + amount);
         accounts[from] -= amount;
         accounts[to] += amount;

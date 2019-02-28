@@ -2,6 +2,8 @@ package com.beangou.year2017.month01.day0129;
 
 import com.beangou.util.httpclient.HttpClientUtil;
 import com.beangou.year2017.Entity;
+import lombok.Getter;
+import lombok.Setter;
 import org.junit.Test;
 
 import java.util.*;
@@ -19,6 +21,48 @@ public class TestCollection {
     public void request() throws Exception {
         String url = "https://pixabay.com/api/?safesearch=true&key=7763095-cae316d630980904e6557f440";
         System.out.println("result=" + new HttpClientUtil().get(url));
+    }
+
+    @Getter
+    @Setter
+    class Person extends Entity {
+        private String name;
+        private int age;
+
+        public Person(){}
+
+        public Person(String name, int age) {
+            this.name = name;
+            this.age = age;
+        }
+    }
+
+    @Test
+    public void copy() {
+        Person person1 = new Person("aaa", 1);
+        Person person2 = new Person("bbb", 2);
+        Person person3 = new Person("ccc", 3);
+        List<Person> list1 = Arrays.asList(person1, person2, person3);
+        List<Person> list2 = new ArrayList<>(list1);
+
+        System.out.println("list1=" + list1);
+        System.out.println("list2=" + list2);
+        person1.setName("dddd");
+        person1.setAge(555);
+        System.out.println("list1=" + list1);
+        System.out.println("list2=" + list2);
+
+        list2.add(person1);
+        System.out.println("list1=" + list1);
+        System.out.println("list2=" + list2);
+    }
+
+    @Test
+    public void count() {
+        int times = 0;
+        int times2 = 0;
+        System.out.println("result=" + times++);
+        System.out.println("result=" + ++times2);
     }
 
     @Test

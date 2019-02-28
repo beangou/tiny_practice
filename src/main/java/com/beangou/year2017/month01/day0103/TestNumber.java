@@ -3,7 +3,7 @@ package com.beangou.year2017.month01.day0103;
 import java.math.BigDecimal;
 
 /**
- * 注： 使用BigDecimal的字符串构造函数， 不能使用double构造函数，会计算不准确
+ * 娉細 浣跨敤BigDecimal鐨勫瓧绗︿覆鏋勯�犲嚱鏁帮紝 涓嶈兘浣跨敤double鏋勯�犲嚱鏁帮紝浼氳绠椾笉鍑嗙‘
  * Created by liutb on 2017/1/3.
  *
  * @since 1.0.0
@@ -13,7 +13,7 @@ public class TestNumber {
         double a = 1.22;
         double floatNum = 0.1f;
         double floatSum = 0;
-        BigDecimal bigDecimalNum2 = new BigDecimal(0.1); // 不ok
+        BigDecimal bigDecimalNum2 = new BigDecimal(0.1); // 涓峯k
         BigDecimal bigDecimalNum3 = BigDecimal.valueOf(0.1); // ok
         BigDecimal bigDecimalNum = new BigDecimal("0.1"); // ok
         BigDecimal bigDecimalSum = new BigDecimal(0);

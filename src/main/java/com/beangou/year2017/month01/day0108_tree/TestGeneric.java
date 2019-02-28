@@ -8,7 +8,7 @@ import java.util.List;
  *
  * @since 1.0.0
  */
-public class TestGeneric {
+public class TestGeneric  {
 //    private List<? extends Number> list = new ArrayList<? extends Integer>();
 
     private List<? super Integer> list2 = new ArrayList<>();
@@ -34,11 +34,25 @@ public class TestGeneric {
         System.out.println(myInteger);
 //        list2.add(new MyInteger()); error
         System.out.println(list.size());
+
+//        get(Class.class<MyInteger>);
+    }
+
+    public void get(Class<? extends HelloInterface> t) {
+
     }
 
 }
 
-class MyInteger {
+class MyInteger implements SonOfInterface {
+
+}
+
+interface SonOfInterface {
+
+}
+
+interface HelloInterface {
 
 }
 

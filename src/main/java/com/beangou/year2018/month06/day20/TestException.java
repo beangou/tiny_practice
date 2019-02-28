@@ -27,9 +27,12 @@ public class TestException {
         }
     }
 
-    private void see() {
+    private void see() throws CheckedException {
         int a = 0;
         System.out.println("a=" + a);
+        if (a==1){
+            throw new CheckedException();
+        }
         throw new MyException("exception happened.");
     }
 
@@ -41,4 +44,8 @@ class MyException extends RuntimeException {
     public MyException(String msg) {
         super(msg);
     }
+}
+
+class CheckedException extends Exception {
+
 }
