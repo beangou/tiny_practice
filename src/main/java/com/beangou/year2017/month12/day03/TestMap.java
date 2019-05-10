@@ -15,6 +15,13 @@ import java.util.Map;
 public class TestMap {
 
     @Test
+    public void see() {
+        Map<String, Integer> map = new HashMap<>();
+        int a = map.get("sss");
+        System.out.println("sss=" + a);
+    }
+
+    @Test
     public void module() {
         System.out.println("result=" + (7&1));
         System.out.println("result=" + 7%2);

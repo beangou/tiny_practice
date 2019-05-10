@@ -13,6 +13,9 @@ public class TestThread implements Runnable {
 
     @Test
     public void myJoin() throws InterruptedException {
+
+        new Thread().isAlive();
+
         Thread.getAllStackTraces();
 
         Thread thread = new Thread(new Runnable() {

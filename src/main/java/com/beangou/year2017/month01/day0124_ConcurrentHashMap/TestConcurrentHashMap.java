@@ -17,7 +17,10 @@ public class TestConcurrentHashMap {
 
     @Test
     public void testRemove() {
-        Map<String, Integer> map = new ConcurrentHashMap<>();
+        ConcurrentHashMap<String, Integer> map = new ConcurrentHashMap<>();
+
+        map.size();
+
         map.put("1", 1);
         map.put("2", 2);
         map.put("3", 3);

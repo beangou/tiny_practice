@@ -14,9 +14,30 @@ public class TestSynchronousQueue {
     @Test
     public void see() throws InterruptedException {
         SynchronousQueue queue = new SynchronousQueue();
-        queue.put(new Object());
-        queue.poll();
-        queue.offer(new Object());
+        Thread thread1 = new Thread(()->{
+            try {
+                Object putObj = new Object();
+                System.out.println("start to putObj=" + putObj + " isEmpty=" + queue.isEmpty());
+                queue.put(putObj);
+                System.out.println("end putObj=" + putObj + " isEmpty=" + queue.isEmpty());
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+        thread1.start();
+
+
+        Thread thread2 = new Thread(() -> {
+            System.out.println("start to poll isEmpty=" + queue.isEmpty());
+            Object pollObject = queue.poll();
+            System.out.println("poll over pollObject=" + pollObject + " isEmpty=" + queue.isEmpty());
+        });
+        thread2.start();
+
+        System.out.println("offer result=" + queue.offer(new Object()));
+        thread1.join();
+        thread2.join();
+        System.out.println("over...");
     }
 
 }

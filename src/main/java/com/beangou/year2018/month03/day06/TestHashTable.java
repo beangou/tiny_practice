@@ -23,6 +23,10 @@ public class TestHashTable {
         Map<String, Integer> table = new Hashtable<>();
         table.put(null, 22);
         System.out.println("table=" + table);
+
+//        map.containsKey();
+//        table.containsKey();
+//        map.containsValue()
     }
 
 }

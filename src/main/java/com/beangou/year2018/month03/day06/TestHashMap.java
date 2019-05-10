@@ -12,6 +12,12 @@ import java.util.HashMap;
 public class TestHashMap {
 
     @Test
+    public void iterate() {
+        HashMap map = new HashMap();
+        map.entrySet();
+    }
+
+    @Test
     public void see() {
 
         long i = 100000000000000L;

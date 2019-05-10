@@ -27,6 +27,21 @@ public class TestThreadLocal {
         }
 
         Hashtable table = null;
+
+        ThreadLocal local1 = new ThreadLocal() {
+            @Override
+            protected Object initialValue() {
+                System.out.println("comes...");
+                return new Object();
+            }
+        };
+
+        Object obj2 = local1.get();
+        Object obj = new Object();
+        System.out.println("obj=" + obj);
+        local1.set(obj);
+        System.out.println("local.get="+local1.get());
+
     }
 }
 

@@ -17,6 +17,25 @@ public class TestArrayList {
     public ArrayList<Integer> list = new ArrayList<>();
 
     @Test
+    public void safe() {
+        Collections.synchronizedList(list);
+    }
+
+    @Test
+    public void grow() {
+        System.out.println("8 >> 1" + (8 >> 1));
+        System.out.println("8 << 1" + (8 << 1));
+    }
+
+    @Test
+    public void addAll() {
+        list.addAll(new ArrayList<>());
+        list.addAll(new ArrayList<>());
+        list.addAll(new ArrayList<>());
+        System.out.println("len=" + list.size());
+    }
+
+    @Test
     public void shuttle() {
         List<String> list = Arrays.asList("小天", "万华", "李聪", "王康", "彭燕", "书记", "婷婷", "家贵", "老李");
         Collections.shuffle(list);

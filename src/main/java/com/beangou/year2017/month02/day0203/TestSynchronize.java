@@ -1,5 +1,7 @@
 package com.beangou.year2017.month02.day0203;
 
+import org.junit.Test;
+
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
@@ -23,9 +25,38 @@ public class TestSynchronize {
 
     private String threadName;
 
-    public TestSynchronize(String threadName) {
-        this.threadName = threadName;
+    public TestSynchronize() {}
+
+    @Test
+    public void reentrantLock() throws InterruptedException {
+        new Thread(()->{
+            try {
+                enterRecursively();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }).start();
+
+        new Thread(()->{
+            try {
+                enterRecursively();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }).start();
+
+        Thread.sleep(100000L);
     }
+
+    public synchronized void enterRecursively() throws InterruptedException {
+        System.out.println("我进来啦 threadName=" + Thread.currentThread().getName());
+        Thread.sleep(1000L);
+        enterRecursively();
+    }
+
+//    public TestSynchronize(String threadName) {
+//        this.threadName = threadName;
+//    }
 
     public synchronized int methodGetI() {
         return i;
@@ -100,7 +131,7 @@ class MyThread implements Runnable {
 
     @Override
     public void run() {
-        new TestSynchronize(threadName).getString();
+//        new TestSynchronize(threadName).getString();
     }
 }
 

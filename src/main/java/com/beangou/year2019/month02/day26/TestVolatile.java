@@ -17,6 +17,13 @@ public class TestVolatile {
 //    static volatile int b;
 
     @Test
+    public void think() {
+        new Thread(() -> {});
+    }
+
+
+
+    @Test
     public void see() {
         System.out.println("date = " + new Date(System.currentTimeMillis()-43811488));
     }
@@ -45,4 +52,15 @@ public class TestVolatile {
         System.out.println("i=" + i + "; j=" + j);
     }
 
+}
+
+class Runner implements Runnable {
+    static int a = 0;
+    static int b = 0;
+    @Override
+    public void run() {
+//        System.out.println("modify before a==b" + (a==b));
+        a++;
+        b++;
+    }
 }

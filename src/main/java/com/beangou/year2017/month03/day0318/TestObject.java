@@ -12,6 +12,11 @@ public class TestObject {
     private int aa;
 
     @Test
+    public void seeWait() throws InterruptedException {
+        new Object().wait();
+    }
+
+    @Test
     public void test() {
         System.out.println("result=" + (null == null));
         boolean x = true;
