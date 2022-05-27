@@ -3,6 +3,7 @@ package com.beangou.year2016.day1113;
 import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Parameter;
 
 /**
@@ -32,8 +33,13 @@ public class TestReflect {
 
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InstantiationException, IllegalAccessException, InvocationTargetException {
         Constructor[] cs = TestReflect.class.getConstructors();
+
+        TestReflect.class.newInstance();
+
+        cs[0].newInstance(args);
+
         System.out.println("cs len =" + cs.length);
         for (int i = 0; i < cs.length; i++) {
             System.out.println("getConstructors=>"+cs[i].getModifiers() + " " + cs[i].getName() + " parameter+>");

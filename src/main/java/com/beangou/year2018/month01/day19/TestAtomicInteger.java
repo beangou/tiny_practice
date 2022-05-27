@@ -14,6 +14,7 @@ public class TestAtomicInteger {
 
     @Test
     public void integer2Long() {
+        Integer.valueOf(11);
         Integer integer = new Integer(2);
         Long mylong = new Long(2);
         System.out.println("result=" + integer.equals(mylong.intValue()));

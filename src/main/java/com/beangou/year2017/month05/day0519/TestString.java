@@ -20,6 +20,32 @@ import java.util.stream.Collectors;
 public class TestString {
 
     @Test
+    public void plus() {
+        String a = "test2";
+        String b = "test"+2;
+
+        String[] split = a.split("");
+
+        for (int i = 0; i < split.length; i++) {
+            System.out.println("sss=" + split[i]);
+        }
+
+        System.out.println("aa=" + split);
+
+        System.out.println(a==b);
+    }
+
+    @Test
+    public void unmodified() {
+        String str1 = "abcde";
+        str1.intern();
+        String str2 = str1;
+        str1 = "dddd";
+        System.out.println(str1);
+        System.out.println(str2);
+    }
+
+    @Test
     public void splitAndTrim() {
         String str = "ss kkk   ddsd ds  dds kk   ";
         String[] strArr = str.split(" ");

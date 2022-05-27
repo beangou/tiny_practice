@@ -28,6 +28,12 @@ public class TestThread implements Runnable {
         });
         thread.start();
         thread.join();
+
+        thread.interrupt();
+
+        thread.isInterrupted();
+
+        Thread.interrupted();
     }
 
     @Test

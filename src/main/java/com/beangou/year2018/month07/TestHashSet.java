@@ -12,7 +12,8 @@ import java.util.HashSet;
 public class TestHashSet {
 
     @Test
-    public void see() {
+    public void see() throws InstantiationException, IllegalAccessException {
+        String instance = String.class.newInstance();
         Long a = null;
         System.out.println("a=" + a);
         HashSet<Integer> set = new HashSet<>(8);

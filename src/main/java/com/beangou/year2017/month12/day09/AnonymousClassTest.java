@@ -2,6 +2,8 @@ package com.beangou.year2017.month12.day09;
 
 import com.beangou.year2017.Entity;
 
+import java.util.HashMap;
+
 /**
  * @author 小彬
  * @version V1.0 2017/12/9 下午10:52
@@ -9,7 +11,26 @@ import com.beangou.year2017.Entity;
  */
 public class AnonymousClassTest {
 
+    {
+
+        System.out.println("comes here...");
+    }
+
+    static {
+        System.out.println("static comes here....");
+    }
+
     public static void main(String[] args) {
+
+        HashMap<String, String> map3 = new HashMap() {
+            {
+                put("A", "1");
+                put("B", "2");
+                String aa = (String)get("aa");
+            }
+        };
+
+        System.out.println("map=" + map3 + ", class=" + map3.getClass());
 
         new AnonymousClassTest().takeALookAbstract("aaa");
 
@@ -95,14 +116,27 @@ abstract class InnerClass extends Entity {
         System.out.println("call super constructor.");
     }
 
+    public abstract String getName();
 }
 
 /**
  *
  */
 class OutClass {
+
+    private String outName;
+
+    public static void main(String[] args) {
+        OutClass outClass = new OutClass();
+        outClass.outName = "gaga";
+        InnerClass innerClass = outClass.getInnerClass(11, "aaa");
+        innerClass.getName();
+    }
+
     public InnerClass getInnerClass(final int age,final String name){
+
         return new InnerClass(name, age) {
+
             int age_ ;
             String name_;
             //构造代码块完成初始化工作
@@ -113,6 +147,8 @@ class OutClass {
                 }
             }
             public String getName() {
+                System.out.println("outName="+outName);
+                System.out.println("outName="+OutClass.this.outName);
                 return name_;
             }
 

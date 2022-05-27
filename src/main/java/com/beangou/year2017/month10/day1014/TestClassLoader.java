@@ -1,6 +1,6 @@
 package com.beangou.year2017.month10.day1014;
 
-import com.beangou.test.Test;
+//import com.beangou.test.Test;
 import lombok.Getter;
 import lombok.Setter;
 

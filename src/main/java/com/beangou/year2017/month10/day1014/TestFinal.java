@@ -15,4 +15,9 @@ public class TestFinal {
 //        this.b = b;
     }
 
+    public void setA() {
+//        compile error
+//        this.a = 5;
+    }
+
 }

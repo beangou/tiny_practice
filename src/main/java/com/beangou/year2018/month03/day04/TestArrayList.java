@@ -16,6 +16,11 @@ public class TestArrayList {
     public ArrayList<Integer> list = new ArrayList<>();
 
     @Test
+    public void unmodified() {
+        Collections.unmodifiableList(new ArrayList<>());
+    }
+
+    @Test
     public void retainAll() {
 
         String after = "";

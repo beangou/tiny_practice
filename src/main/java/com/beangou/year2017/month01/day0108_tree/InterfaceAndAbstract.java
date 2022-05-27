@@ -20,6 +20,9 @@ public class InterfaceAndAbstract implements MyInterface{
 }
 
 interface MyInterface {
+    /**
+     * 接口 字段，默认是 static final
+     */
     public static final String name = "hello";
     default void printName() {
         System.out.println(name);

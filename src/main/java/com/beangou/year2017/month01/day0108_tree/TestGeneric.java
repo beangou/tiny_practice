@@ -15,8 +15,20 @@ public class TestGeneric {
 
 //    private List<? extends MyInteger> list3 = new ArrayList<? extends SonOfMyInteger>();
 
+
     public static void main(String[] args) {
 //        list.add()
+        List<MyInteger> list = new ArrayList<>();
+        list.add(new MyInteger());
+
+        List<SonOfMyInteger> list2 = new ArrayList<>();
+        list2.add(new SonOfMyInteger());
+
+        go(list);
+        go(list2);
+
+
+
         TestGeneric generic = new TestGeneric();
         generic.add();
     }
@@ -34,6 +46,10 @@ public class TestGeneric {
         System.out.println(myInteger);
 //        list2.add(new MyInteger()); error
         System.out.println(list.size());
+    }
+
+    private static void go(List<? extends MyInteger> intList) {
+        System.out.println(intList);
     }
 
 }

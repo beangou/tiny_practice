@@ -20,6 +20,7 @@ public class TestThreadLocal {
         local.set(null);
         System.out.println("local=" + local.get());
 
+        local.remove();
         if(local == null) {
             System.out.println("");
         } else {

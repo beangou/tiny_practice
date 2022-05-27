@@ -20,6 +20,9 @@ public class TestClone {
      */
     @Test
     public void testNoImplementsCloneable() {
+        Object obj = new Object();
+//        Object objClone = obj.clone();
+
         B b = new B();
         b.clone();
     }
